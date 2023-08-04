@@ -1,0 +1,32 @@
+[Paths]
+backgroundPaths = [ "Assets/Fuji.mp4",]
+musicPaths = [ "Assets/1.mp3", "Assets/2.mp3", "Assets/3.mp3", "Assets/4.mp3", "Assets/5.mp3", "Assets/6.mp3", "Assets/7.mp3", "Assets/8.mp3",]
+outputPath = "Output"
+memesPath = "Assets/Memes"
+imgurPath = "Assets/Memes/Imgur"
+redditPath = "Assets/Memes/Reddit"
+
+[Settings]
+clipFps = 60
+clipDuration = 4
+
+[Display]
+paddingTop = 100
+paddingBottom = 100
+paddingSide = 50
+
+[AutoPosting]
+Credentials = "path-here"
+YouTube-Api-Version = "v3"
+YouTube-Api-Service-Name = "youtube"
+subReddits = [ "memes", "dankmemes",]
+shortsAmount = 5
+
+[Scraping.Imgur]
+Authorization = "key-here"
+
+[Scraping.Reddit]
+Id = "id-here"
+Secret = "secret-here"
+userAgent = "Serialized's Cloud Tool"
+TimeSpan = "Day"
