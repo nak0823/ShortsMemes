@@ -3,4 +3,5 @@ moviepy==1.0.3
 praw==7.4.0
 requests==2.26.0
 google-api-python-client==2.18.0
+google-auth-oauthlib
 toml==0.10.2
