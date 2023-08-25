@@ -9,12 +9,12 @@ def check_config():
     if not os.path.exists(config_file):
         default_config = {
             "Paths": {
-            "backgroundPaths": ["Assets/Backgrounds"],
-            "musicPaths": ["Assets/Music"],
-            "outputPath": "Output",
-            "memesPath": "Assets/Memes",
-            "imgurPath": "Assets/Memes",
-            "redditPath": "Assets/Memes"
+                "backgroundPaths": ["Assets/Fuji.mp4"],
+                "musicPaths": ["Assets/1.mp3", "Assets/2.mp3", "Assets/3.mp3", "Assets/4.mp3", "Assets/5.mp3", "Assets/6.mp3", "Assets/7.mp3", "Assets/8.mp3"],
+                "outputPath": "Output",
+                "memesPath": "Assets/Memes",
+                "imgurPath": "Assets/Memes/Imgur",
+                "redditPath": "Assets/Memes/Reddit"
             },
             "Settings": {
                 "clipFps": 60,
