@@ -20,7 +20,7 @@ def main():
     # Prints the beautiful ascii art
     logger.print_logo()
     logger.print_menu()
-    logger.console_title("ShortsMemes | Generate Meme Shorts | By Serialized - fixed by xFlippy")
+    logger.console_title("ShortsMemes | Generate Meme Shorts | By Serialized")
 
     user_input = int(input())
 

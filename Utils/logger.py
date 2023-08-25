@@ -8,7 +8,6 @@ class Colors:
     magenta = Fore.LIGHTMAGENTA_EX
     cyan = Fore.LIGHTCYAN_EX
     white = Fore.WHITE
-    red = Fore.LIGHTRED_EX
 
 def print_logo():
     cols = shutil.get_terminal_size().columns
@@ -19,7 +18,7 @@ def print_logo():
     print(f"{Colors.magenta}    ██║     ██║     ██║   ██║██║   ██║██║  ██║".center(cols))
     print(f"{Colors.magenta}     ██████╗███████╗╚██████╔╝╚██████╔╝██████╔╝".center(cols))
     print(f"{Colors.magenta}     ╚═════╝╚══════╝ ╚═════╝  ╚═════╝ ╚═════╝ ".center(cols))
-    print(f"{Colors.cyan}    Multi Functional Shorts Maker ~ Serialized & xFlippy".center(cols))
+    print(f"{Colors.cyan}    Multi Functional Shorts Maker ~ Serialized".center(cols))
     print()
 
 def print_menu():
