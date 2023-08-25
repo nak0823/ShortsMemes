@@ -1,21 +1,13 @@
 import os
-script_directory = os.path.dirname(os.path.abspath(__file__))
-font_path = os.path.join(script_directory, "font.ttf")
 import random
 import time
 import uuid
 from moviepy.editor import *
 
 import Mods.title as title
-import Mods.texts as texts
-
 import Utils.config as config
 import Utils.logger as logger
 import main as main
-
-from PIL import Image, ImageDraw, ImageFont, ImageFilter
-import numpy as np
-
 
 compiled_videos = []
 
@@ -37,55 +29,6 @@ def get_random_file_from_directory(directory_path, extensions=None):
         raise ValueError(f"No suitable files found in directory: {directory_path}")
 
     return os.path.join(directory_path, random.choice(files))
-
-
-def text_overflows(img_size, text, font):
-    d = ImageDraw.Draw(Image.new('RGBA', img_size, (0, 0, 0, 0)))
-    text_width, text_height = d.textsize(text, font=font)
-    return text_width > img_size[0] or text_height > img_size[1]
-
-
-
-def glowing_text_with_pillow(size, text, font_path, font_size=68):
-    # Create a blank (transparent) image
-    img = Image.new('RGBA', size, (0, 0, 0, 0))
-    d = ImageDraw.Draw(img)
-    
-    # Load the font
-    try:
-        font = ImageFont.truetype(font_path, font_size)
-    except IOError:
-        # Default to a basic font if desired font is not found
-        font = ImageFont.load_default()
-
-    # Check to fit the text
-    while text_overflows(size, text, font) and font.size > 1:
-        font = ImageFont.truetype(font_path, font.size - 2)
-
-    # Calculate text position (centered)
-    text_width, text_height = d.textsize(text, font=font)
-    x = (img.width - text_width) / 2
-    y = (img.height - text_height) / 2
-
-    # Draw the glowing effect
-    glow = Image.new('RGBA', img.size, (0, 0, 0, 0))
-    glow_d = ImageDraw.Draw(glow)
-    glow_d.text((x, y), text, font=font, fill=(255, 0, 0, 255))
-    
-    # Increase the blur radius for a larger glow effect
-    blurred_glow = glow.filter(ImageFilter.GaussianBlur(radius=30)).convert('L')
-
-    # Adjust glow color for a brighter, more intense glow
-    img.paste((255, 100, 100), (0, 0), blurred_glow)
-
-    # Draw the main white text on top
-    d.text((x, y), text, font=font, fill=(255, 255, 255))
-    
-    # Convert to numpy array for compatibility with moviepy
-    return np.array(img)
-
-
-
 
 
 def compile(is_auto):
@@ -159,13 +102,8 @@ def compile(is_auto):
         top_meme = top_meme.set_position(top_meme_pos).set_duration(clip_duration)
         bottom_meme = bottom_meme.set_position(bottom_meme_pos).set_duration(clip_duration)
 
-        glowing_text_img = glowing_text_with_pillow(short.size, texts.Text_maker(), font_path, 68)
-        glowing_text_clip = ImageClip(glowing_text_img).set_duration(clip_duration)
-        text_pos = (short.size[0] // 2 - glowing_text_clip.size[0] // 2, short.size[1] - glowing_text_clip.size[1] - 10)
-        glowing_text_clip = glowing_text_clip.set_position(text_pos)
-
         # Set a random audio under the video.
-        comp = CompositeVideoClip([short.subclip(0, clip_duration), top_meme, bottom_meme, glowing_text_clip])
+        comp = CompositeVideoClip([short.subclip(0, clip_duration), top_meme, bottom_meme])
 
         # Start of new audio handling
         audio = AudioFileClip(random_music)
