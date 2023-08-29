@@ -5,4 +5,4 @@ requests==2.26.0
 google-api-python-client==2.18.0
 google-auth-oauthlib
 toml==0.10.2
-Pillow == 10.0.0
+Pillow == 10.0.0 
